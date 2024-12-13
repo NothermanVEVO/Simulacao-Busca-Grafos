@@ -12,6 +12,7 @@ public class Vertice implements Comparable<Vertice> {
     
     public int id;
     public Vector2 pos;
+    public static final int VERTICE_SIZE = 30;
 
     public Vertice( int id, double x, double y ) {
         this.id = id;
@@ -20,8 +21,8 @@ public class Vertice implements Comparable<Vertice> {
     
     public void draw( EngineFrame e ) {
         
-        e.fillCircle( pos, 30, EngineFrame.WHITE );
-        e.drawCircle( pos, 30, EngineFrame.BLACK );
+        e.fillCircle( pos, VERTICE_SIZE, EngineFrame.WHITE );
+        e.drawCircle( pos, VERTICE_SIZE, EngineFrame.BLACK );
         
         String label = String.valueOf( id );
         int w = e.measureText( label );

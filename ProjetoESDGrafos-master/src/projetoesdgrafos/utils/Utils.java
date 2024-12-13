@@ -1,10 +1,11 @@
 package projetoesdgrafos.utils;
 
 import br.com.davidbuzatto.jsge.math.Vector2;
-import projetoesdgrafos.grafo.Vertice;
+// import br.com.davidbuzatto.jsge.math.Vector2;
+// import projetoesdgrafos.grafo.Vertice;
 import projetoesdgrafos.grafo.Grafo;
-import java.util.Map;
-import java.util.TreeMap;
+// import java.util.Map;
+// import java.util.TreeMap;
 
 /**
  *
@@ -15,7 +16,7 @@ public interface Utils {
     public static Grafo criarGrafoTeste() {
         
         Grafo grafo = new Grafo();
-        Map<Integer, Vertice> st = new TreeMap<>();
+        // Map<Integer, Vertice> st = new TreeMap<>();
         
         grafo.addVertice( 100, 100 );
         grafo.addVertice( 150, 200 );
@@ -47,6 +48,20 @@ public interface Utils {
         
         return grafo;
         
+    }
+
+    public static Vector2 pontoNaCircunferencia(double cx, double cy, double raio, double angulo) {
+        double x = cx + raio * Math.cos(angulo);
+        double y = cy + raio * Math.sin(angulo);
+
+        return new Vector2(x, y);
+    }
+
+    public static Vector2 pontoNaCircunferencia(Vector2 center, double raio, double angulo) {
+        double x = center.x + raio * Math.cos(angulo);
+        double y = center.y + raio * Math.sin(angulo);
+
+        return new Vector2(x, y);
     }
     
 }

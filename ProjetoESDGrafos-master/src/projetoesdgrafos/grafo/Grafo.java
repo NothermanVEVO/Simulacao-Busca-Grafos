@@ -2,8 +2,12 @@ package projetoesdgrafos.grafo;
 
 import br.com.davidbuzatto.jsge.core.engine.EngineFrame;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -83,6 +87,31 @@ public class Grafo {
         
         return sb.toString().trim();
         
+    }
+
+    // TODO
+    // Busca em Largura (BFS)
+    public static List<String> buscaEmLargura(Grafo grafo, int verticeInicial) {
+        Set<Vertice> visitados = new HashSet<>();
+        Queue<Vertice> fila = new LinkedList<>();
+        List<String> resultado = new ArrayList<>();
+
+        Vertice inicial = grafo.vertices.get(verticeInicial);
+        visitados.add(inicial);
+        fila.add(inicial);
+
+        while (!fila.isEmpty()) {
+            Vertice vertice = fila.poll();
+
+            for (Aresta aresta : grafo.adjacentes(vertice.id)) {
+                if (!visitados.contains(aresta.destino)) {
+                    visitados.add(aresta.destino);
+                    fila.add(aresta.destino);
+                    resultado.add(vertice.id + " -> " + aresta.destino.id);
+                }
+            }
+        }
+        return resultado;
     }
     
 }
