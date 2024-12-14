@@ -6,11 +6,8 @@ import projetoesdgrafos.grafo.Grafo;
 import javax.swing.JFrame;
 
 import br.com.davidbuzatto.jsge.core.engine.EngineFrame;
-import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.RED;
 import br.com.davidbuzatto.jsge.math.Vector2;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import javax.swing.JOptionPane;
 import projetoesdgrafos.grafo.Aresta;
 import projetoesdgrafos.grafo.Vertice;
@@ -23,7 +20,7 @@ import projetoesdgrafos.grafo.Vertice;
 public class SimuladorBuscaLargura extends EngineFrame {
     
     private Grafo grafo;
-    int verticeFonte;
+    int verticeFonte = -1;
     
     public SimuladorBuscaLargura() {
         super( 650, 500, "Busca em Largura", 60, true );
@@ -35,8 +32,6 @@ public class SimuladorBuscaLargura extends EngineFrame {
     @Override
     public void create() {
         grafo = Utils.criarGrafoTeste();
-        // System.out.println( grafo );
-        Grafo.buscaEmLargura(grafo, 0);
         setDefaultFontSize( 20 );
         setDefaultStrokeLineWidth( 2 );
         setDefaultStrokeEndCap( STROKE_CAP_ROUND );
@@ -71,7 +66,9 @@ public class SimuladorBuscaLargura extends EngineFrame {
         clearBackground( WHITE );
         drawText( "Clique para escolher a fonte e executar o algoritmo.", 10, 10, BLACK );
         grafo.draw( this );
-        buscaLarguraInicial(grafo, verticeFonte);
+        if(verticeFonte >= 0){
+            buscaLarguraInicial(grafo, verticeFonte);
+        }
     }
     
     private boolean[] visitado;
@@ -89,7 +86,7 @@ public class SimuladorBuscaLargura extends EngineFrame {
             distanciaDe[i] = -1; 
         }
         
-         buscaLargura(grafo, verticeFonte);
+        buscaLargura(grafo, verticeFonte);
     }
     
     public void buscaLargura(Grafo grafo, int verticeFonte){
@@ -98,7 +95,7 @@ public class SimuladorBuscaLargura extends EngineFrame {
         visitado[verticeFonte] = true;
         
         while(!fila.isEmpty()){
-            int vertice = fila.removeFirst();
+            int vertice = fila.remove(0);
            
             for(Aresta i : grafo.adjacentes(vertice)){
                 

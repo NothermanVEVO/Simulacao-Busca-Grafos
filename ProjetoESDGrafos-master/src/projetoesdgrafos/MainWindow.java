@@ -103,8 +103,7 @@ public class MainWindow extends EngineFrame {
     }
     
     public static BufferedImage toBufferedImage(java.awt.Image img) {
-        if (img instanceof BufferedImage)
-        {
+        if (img instanceof BufferedImage){
             return (BufferedImage) img;
         }
 
